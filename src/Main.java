@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] intArray=new int[10];
+        ArrayList<Integer> list=new ArrayList<Integer>();
         int count=0;
         int result=0;
         while (true)
@@ -51,10 +52,8 @@ public class Main {
 
 
             }
-
-            
-
-            if(count==10)
+            list.add(result);
+            /*if(count==10)
             {
                 for(int i=0;i<9;i++)
                 {
@@ -66,15 +65,19 @@ public class Main {
             {
                 intArray[count]=result;
                 count++;
-            }
-
-
+            }*/
             String answer=sc.nextLine();
+            System.out.println("삭제하고싶다면 remove 입력");
+            answer=sc.nextLine();
+            if(answer.equals("remove")) {
+                list.remove(0);
+            }
             System.out.println("더 계산하시겠습니까? (exit 입력시 종료 가능)");
             answer = sc.nextLine();
             if(answer.equals("exit")) {
-                for (int i = 0; i < count; i++) {
-                    System.out.println("intArray[" + i + "]=" + intArray[i]);
+                for (int i = 0; i < list.size(); i++) {
+
+                    System.out.println("intArray[" + i + "]=" + list.get(i));
                 }
                 break;
             }
