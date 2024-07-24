@@ -52,18 +52,22 @@ public class Main {
 
             }
 
-            intArray[count]=result;
-            count++;
+            
 
             if(count==10)
             {
-                System.out.println("배열이 꽉차 더 계산할 수 없습니다");
-                for(int i=0;i<count;i++)
+                for(int i=0;i<9;i++)
                 {
-                    System.out.println("intArray["+i+"]="+intArray[i]);
+                    intArray[i]=intArray[i+1];
                 }
-                break;
+                intArray[9]=result;
             }
+            else
+            {
+                intArray[count]=result;
+                count++;
+            }
+
 
             String answer=sc.nextLine();
             System.out.println("더 계산하시겠습니까? (exit 입력시 종료 가능)");
