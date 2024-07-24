@@ -2,10 +2,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int[] intArray=new int[10];
+        int count=0;
+        int result=0;
         while (true)
         {
 
-            int result;
             System.out.println("첫 번째 숫자를 입력하세요: ");
             int num1 = sc.nextInt();
             //String buffer=sc.nextLine();
@@ -49,12 +51,29 @@ public class Main {
 
 
             }
-            String answer=sc.nextLine();
-            System.out.println("더 계산하시겠습니까? (exit 입력시 종료 가능");
-            answer = sc.nextLine();
-            if(answer.equals("exit"))
-                break;
 
+            intArray[count]=result;
+            count++;
+
+            if(count==10)
+            {
+                System.out.println("배열이 꽉차 더 계산할 수 없습니다");
+                for(int i=0;i<count;i++)
+                {
+                    System.out.println("intArray["+i+"]="+intArray[i]);
+                }
+                break;
+            }
+
+            String answer=sc.nextLine();
+            System.out.println("더 계산하시겠습니까? (exit 입력시 종료 가능)");
+            answer = sc.nextLine();
+            if(answer.equals("exit")) {
+                for (int i = 0; i < count; i++) {
+                    System.out.println("intArray[" + i + "]=" + intArray[i]);
+                }
+                break;
+            }
         }
     }
 }
