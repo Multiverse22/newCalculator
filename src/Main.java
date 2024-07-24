@@ -15,7 +15,6 @@ public class Main {
         System.out.println("원하시는 사칙연산 기호를 입력하세요");
         char basicOperator=sc.next().charAt(0);
         System.out.println(basicOperator);
-        System.out.println(basicOperator);
         
         //System.out.println(basicOperator);
         switch (basicOperator) {
