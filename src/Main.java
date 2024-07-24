@@ -72,13 +72,18 @@ public class Main {
             if(answer.equals("remove")) {
                 list.remove(0);
             }
+            System.out.println("연산결과 조회하고 싶으면 inquiry 입력");
+            answer=sc.nextLine();
+            if(answer.equals("inquiry")) {
+                for(int i:list)
+                {
+                    System.out.println(i);
+                }
+            }
             System.out.println("더 계산하시겠습니까? (exit 입력시 종료 가능)");
             answer = sc.nextLine();
             if(answer.equals("exit")) {
-                for (int i = 0; i < list.size(); i++) {
-
-                    System.out.println("intArray[" + i + "]=" + list.get(i));
-                }
+                System.out.println("계산 종료");
                 break;
             }
         }
