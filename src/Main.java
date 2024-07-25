@@ -22,16 +22,17 @@ public class Main {
             calculator.setOp(sc.next().charAt(0));
             //Calculator클래스의 basicOperator의 setter
             calculator.calculate();
+            //Calculator클래스의 사칙연산을 실행하는 메서드
 
             //list.add(calculator.Calculate());
 
             System.out.println("삭제하고싶다면 remove 입력,조회하고싶으면 inquiry입력");
             String answer =sc.nextLine();
             //이 부분 항상 주의할 것
-            answer = sc.nextLine();
+            answer=sc.nextLine();
             if (answer.equals("remove")) {
-                calculator.list.remove(0);
-                System.out.println("삭제완료");
+                //calculator.list.remove(0); 변수를 직접수정하는것이 아닌 메서드로
+                calculator.remove();
             }
             if(answer.equals("inquiry")) {
                 System.out.println("------------현재 목록은 다음과 같습니다:-----------");
