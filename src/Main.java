@@ -10,7 +10,8 @@ public class Main
 
         boolean flag;
         String answer = "";
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator calc= new ArithmeticCalculator();
+        CircleCalculator circle= new CircleCalculator();
         int tmp;
         while (true) {
             System.out.println("1.사칙연산계산기 2.원의넓이 계산기 0.종료하기 ");
@@ -29,7 +30,7 @@ public class Main
                     char op = sc.next().charAt(0);
 
 
-                    calculator.calculate(num1, num2, op);
+                    calc.calculate(num1, num2, op);
 
                         /*
 
@@ -48,7 +49,7 @@ public class Main
                     //list.add(calculator.Calculate());
                     answer = "";
                     answer = sc.nextLine();
-                    flag = calculator.emptyList();
+                    flag = calc.emptyList();
                     if (!flag) {
                         //Calculator클래스의 list가 비어있지않을때만 실행
                         System.out.println("삭제하고싶다면 remove 입력,조회하고싶으면 inquiry입력");
@@ -57,10 +58,10 @@ public class Main
                         answer = sc.nextLine();
                         if (answer.equals("remove")) {
                             //calculator.list.remove(0); 변수를 직접수정하는것이 아닌 메서드로
-                            calculator.removeResult();
+                            calc.removeResult();
                         }
                         if (answer.equals("inquiry")) {
-                            calculator.inquiryResults();
+                            calc.inquiryResults();
                             //이제 조회기능도 메서드로
                         }
                     }
@@ -77,14 +78,11 @@ public class Main
                 while (true) {
                     System.out.println("반지름을 입력 : ");
                     Double radius = sc.nextDouble();
-
-                    answer = "";
-                    answer = sc.nextLine();
-                    calculator.setRadius(radius);
-                    calculator.calculateCircleArea();
+                    sc.nextLine();
+                    circle.calculateCircleArea(radius);
                     //System.out.println(calculator.getRadius());
                     //Getter메서드 구현
-                    calculator.inquiryCircleArea();
+                    circle.inquiryResults();
                     System.out.println("더 계산하고싶으시면 exit를 제외한 아무거나 입력");
                     answer = sc.nextLine();
                     if (answer.equals("exit")) {

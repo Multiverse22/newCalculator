@@ -1,28 +1,26 @@
 import java.util.ArrayList;
 
 public class Calculator {
-    private int num1=0,num2=0;
+    protected int num1=0,num2=0;
     //직접 접근 금지
-    private double radius=0;
+    protected double radius=0;
     static final double PI=3.14;
     //static과 final을 둘다사용하면 객체없이도 어디서나 PI를 3.14 대신사용할 수 있으며
     //PI라는 값의 변경도 불가하므로 다른객체나 메서드에서도 편하게 사용 할 수 있다
-    private char basicOperator;
+    protected char basicOperator;
     //ArrayList<Integer> list=new ArrayList<>(); 방식으로 초기화하지않는이유는 생성자로 초기화를하면
     //매개변수에 따라 다양하게 초기화가 가능하기때문
-    private ArrayList<Integer> list;
+    protected ArrayList<Integer> list;
     //private으로 선언하지않으면 누군가 list를 비워버리는 메서드로 list를 싹날릴수도있기때문에 getter/setter로만 접근 할 수 있게 private으로 선언해야한다.
-    private ArrayList<Double> listCircleArea;
+    protected ArrayList<Double> listCircleArea;
     //연산결과를 저장하는 컬렉션 타입 필드
     public Calculator(){
-        this.list=new ArrayList<>();
-        this.listCircleArea=new ArrayList<>();
+        list=new ArrayList<>();
+        listCircleArea=new ArrayList<>();
 
     }
-    public void calculateCircleArea(){
-        double circleArea=PI*(radius*radius);
-        listCircleArea.add(circleArea);
-
+    public void calculateCircleArea(Double radius){
+       listCircleArea.add(PI*radius*radius);
     }
     //원의넓이 필드관련 Getter/Setter
     public void setRadius(double radius){
@@ -30,15 +28,6 @@ public class Calculator {
     }
     public Double getRadius(){
         return this.radius;
-    }
-    public boolean emptyListCircleArea(){
-        //Calculator클래스의 list가 비어있는지 확인할때마다 객체.list.isEmpty()메서드를 사용하는건 너무번거로워서 클래스내부에 메서드로 작성
-        if(list.isEmpty())
-        {
-            return true;
-        }
-        else
-            return false;
     }
     public boolean emptyList(){
         //Calculator클래스의 list가 비어있는지 확인할때마다 객체.list.isEmpty()메서드를 사용하는건 너무번거로워서 클래스내부에 메서드로 작성
@@ -82,6 +71,10 @@ public class Calculator {
         return a*b;
     }
     public int div(int a,int b){
+        if(b==0)
+        {
+            throw new ArithmeticException("0으로 나눌 수 없습니다.");
+        }
         return a/b;
     }
     public void opError(char op){
@@ -100,17 +93,12 @@ public class Calculator {
             }
         System.out.println("------------현재 목록은 다음과 같습니다:-----------");
     }
-    public void removeCircleArea(){
-        listCircleArea.remove(0);
-        System.out.println("삭제완료");
-
+    public void listAdd(int a){
+        list.add(a);
     }
-    public void inquiryCircleArea() {
-        System.out.println("------------현재 목록은 다음과 같습니다:-----------");
-        for (Double p : listCircleArea) {
-            System.out.println(p);
-        }
-        System.out.println("------------현재 목록은 다음과 같습니다:-----------");
+
+    public void listAdd(double a){
+        listCircleArea.add(a);
     }
     public void calculate(int a,int b,char op)
     {
@@ -136,9 +124,7 @@ public class Calculator {
                 result = sub(num1,num2);
                 break;
             default:
-                System.out.println("잘못된 사칙연산기호 " + basicOperator + "를 입력하셨습니다 + - * / 기호중에서 다시 시도하십시오");
-                flag=false;
-                break;
+                throw new ArithmeticException("잘못된 연산기호 입니다");
         }
         if(flag)
             System.out.println("결과값은" + result + "입니다");
@@ -146,7 +132,7 @@ public class Calculator {
         if(flag)
             //사칙연산 기호중 아무것도 해당되지않는 result는 0이되는데 이경우에만 리스트에 넣지말자
             //그냥 result가 0일때 리스트에 추가하지않으면 사칙연산후 결과값이 0일때도 리스트에 넣지않기때문에 이런식으로 구현
-            list.add(result);
+            listAdd(result);
         //return result;
     }
 }
