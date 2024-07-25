@@ -1,5 +1,8 @@
 import java.util.ArrayList;
-
+import Operator.AddOperator;
+import Operator.MultiOperator;
+import Operator.SubOperator;
+import Operator.DivideOperator;
 public class Calculator {
     protected int num1=0,num2=0;
     //직접 접근 금지
@@ -14,9 +17,17 @@ public class Calculator {
     //private으로 선언하지않으면 누군가 list를 비워버리는 메서드로 list를 싹날릴수도있기때문에 getter/setter로만 접근 할 수 있게 private으로 선언해야한다.
     protected ArrayList<Double> listCircleArea;
     //연산결과를 저장하는 컬렉션 타입 필드
+    protected AddOperator addOperator;
+    protected SubOperator subOperator;
+    protected DivideOperator divideOperator;
+    protected MultiOperator multiOperator;
     public Calculator(){
         list=new ArrayList<>();
         listCircleArea=new ArrayList<>();
+        addOperator=new AddOperator();
+        subOperator=new SubOperator();
+        multiOperator=new MultiOperator();
+        divideOperator=new DivideOperator();
 
     }
     public void calculateCircleArea(Double radius){
@@ -61,25 +72,6 @@ public class Calculator {
     }
     //Getter 하지만 이런 Getter/Setter는 사용하는것을 지양하는것이 좋다. 이유는 TIL에 작성
 
-    public int add(int a,int b){
-        return a+b;
-    }
-    public int sub(int a,int b){
-        return a-b;
-    }
-    public int mul(int a,int b){
-        return a*b;
-    }
-    public int div(int a,int b){
-        if(b==0)
-        {
-            throw new ArithmeticException("0으로 나눌 수 없습니다.");
-        }
-        return a/b;
-    }
-    public void opError(char op){
-        System.out.println("잘못된 사칙연산기호 " + op + "를 입력하셨습니다 + - * / 기호중에서 다시 시도하십시오");
-    }
     //값을 직접 수정하는 것이 아닌 Calculator 클래스 내부에 삭제 메서드를 구현
     //이제 Main메서드에서는 remove메서드를 호출해 가장 먼저들어온 값을 list에서 삭제할 수 있다.
     public void removeResult(){
@@ -112,16 +104,16 @@ public class Calculator {
         boolean flag = true;
         switch (basicOperator) {
             case '/':
-                result = div(num1,num2);
+                result = divideOperator.divideOperate(num1,num2);
                 break;
             case '*':
-                result = mul(num1,num2);
+                result = multiOperator.multiOperate(num1,num2);
                 break;
             case '+':
-                result = add(num1,num2);
+                result = addOperator.addOperate(num1,num2);
                 break;
             case '-':
-                result = sub(num1,num2);
+                result = subOperator.subOperate(num1,num2);
                 break;
             default:
                 throw new ArithmeticException("잘못된 연산기호 입니다");
