@@ -9,6 +9,15 @@ public class Calculator {
     public Calculator(){
 
     }
+    public boolean empty(){
+        //Calculator클래스의 list가 비어있는지 확인할때마다 객체.list.isEmpty()메서드를 사용하는건 너무번거로워서 클래스내부에 메서드로 작성
+        if(list.isEmpty())
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 
     public void setA(int a){
         num1=a;
@@ -49,9 +58,16 @@ public class Calculator {
     }
     //값을 직접 수정하는 것이 아닌 Calculator 클래스 내부에 삭제 메서드를 구현
     //이제 Main메서드에서는 remove메서드를 호출해 가장 먼저들어온 값을 list에서 삭제할 수 있다.
-    public void remove(){
+    public void removeResult(){
         list.remove(0);
         System.out.println("삭제완료");
+    }
+    public void inquiryResults(){
+        System.out.println("------------현재 목록은 다음과 같습니다:-----------");
+            for (int k : list) {
+                System.out.println(k);
+            }
+        System.out.println("------------현재 목록은 다음과 같습니다:-----------");
     }
     public void calculate()
     {
@@ -78,10 +94,13 @@ public class Calculator {
                 flag=false;
                 break;
         }
-        if(flag==true)
+        if(flag)
             System.out.println("결과값은" + result + "입니다");
         //리스트에 저장함
-        list.add(result);
+        if(flag)
+            //사칙연산 기호중 아무것도 해당되지않는 result는 0이되는데 이경우에만 리스트에 넣지말자
+            //그냥 result가 0일때 리스트에 추가하지않으면 사칙연산후 결과값이 0일때도 리스트에 넣지않기때문에 이런식으로 구현
+            list.add(result);
         //return result;
     }
 }
