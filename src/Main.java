@@ -5,7 +5,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> list = new ArrayList<Integer>();
         Calculator calculator=new Calculator();
-        //테스트를 위해 3번만
         boolean flag;
         while(true)
         {

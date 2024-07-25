@@ -4,9 +4,12 @@ public class Calculator {
     private int num1=0,num2=0;
     //직접 접근 금지
     private char basicOperator;
-    ArrayList<Integer> list = new ArrayList<Integer>();
+    //ArrayList<Integer> list=new ArrayList<>(); 방식으로 초기화하지않는이유는 생성자로 초기화를하면
+    //매개변수에 따라 다양하게 초기화가 가능하기때문
+    private ArrayList<Integer> list;
     //연산결과를 저장하는 컬렉션 타입 필드
     public Calculator(){
+        this.list=new ArrayList<>();
 
     }
     public boolean empty(){
