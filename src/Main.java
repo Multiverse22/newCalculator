@@ -15,10 +15,13 @@ public class Main {
             //System.out.println(num1+","+num2);
             System.out.println("원하시는 사칙연산 기호를 입력하세요");
 
-            calculator.num1=sc.nextInt();
-            calculator.num2=sc.nextInt();
-            calculator.basicOperator=sc.next().charAt(0);
-            calculator.Calculate();
+            calculator.setA(sc.nextInt());
+            //Calculator클래스의 num1의 setter
+            calculator.setB(sc.nextInt());
+            //Calculator클래스의 num2의 setter
+            calculator.setOp(sc.next().charAt(0));
+            //Calculator클래스의 basicOperator의 setter
+            calculator.calculate();
 
             //list.add(calculator.Calculate());
 
