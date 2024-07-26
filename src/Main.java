@@ -9,8 +9,8 @@ public class Main
 
         boolean flag;
         String answer = "";
-        ArithmeticCalculator calc= new ArithmeticCalculator();
         CircleCalculator circle= new CircleCalculator();
+        ArithmeticCalculator Arithcalc= new ArithmeticCalculator<Double>();
         int tmp;
         while (true) {
             System.out.println("1.사칙연산계산기 2.원의넓이 계산기 0.종료하기 ");
@@ -24,12 +24,13 @@ public class Main
                     System.out.println("두 번째 숫자를 입력하세요: ");
                     //System.out.println(num1+","+num2);
                     System.out.println("원하시는 사칙연산 기호를 입력하세요");
-                    int num1 = sc.nextInt();
-                    int num2 = sc.nextInt();
+                    Double num1 = sc.nextDouble();
+                    Double num2 = sc.nextDouble();
                     char op = sc.next().charAt(0);
 
 
-                    calc.calculate(num1, num2, op);
+
+                    Arithcalc.calculate(num1, num2, op);
 
                         /*
 
@@ -48,7 +49,7 @@ public class Main
                     //list.add(calculator.Calculate());
                     answer = "";
                     answer = sc.nextLine();
-                    flag = calc.emptyList();
+                    flag = Arithcalc.emptyList();
                     if (!flag) {
                         //Calculator클래스의 list가 비어있지않을때만 실행
                         System.out.println("삭제하고싶다면 remove 입력,조회하고싶으면 inquiry입력");
@@ -57,10 +58,10 @@ public class Main
                         answer = sc.nextLine();
                         if (answer.equals("remove")) {
                             //calculator.list.remove(0); 변수를 직접수정하는것이 아닌 메서드로
-                            calc.removeResult();
+                            Arithcalc.removeResult();
                         }
                         if (answer.equals("inquiry")) {
-                            calc.inquiryResults();
+                            Arithcalc.inquiryResults();
                             //이제 조회기능도 메서드로
                         }
                     }

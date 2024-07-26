@@ -24,7 +24,6 @@ public abstract class Calculator {
     protected MultiOperator multiOperator;
     protected ModOperator modOperator;
     //사칙연산 객체선언
-    public OperatorType Op;
     public Calculator(){
         list=new ArrayList<>();
         listCircleArea=new ArrayList<>();
@@ -91,44 +90,6 @@ public abstract class Calculator {
     }
     public void listAdd(int a){
         list.add(a);
-    }
-    public void calculate(int a,int b,char op)
-    {
-        this.setA(a);
-        this.setB(b);
-        this.setOp(op);
-        //당장에는 int반환값을 반환할 일이 없으니 void형식으로 변경
-        //4칙연산을 수행하는 메서드를 불러와 계산하는 계산메서드Calculate()
-        //List list=new List();
-        int result = 0;
-        boolean flag = true;
-        switch (basicOperator) {
-            case '/':
-                result = divideOperator.operate(num1,num2);
-                break;
-            case '*':
-                result = multiOperator.operate(num1,num2);
-                break;
-            case '+':
-                result = addOperator.operate(num1,num2);
-                break;
-            case '-':
-                result = subOperator.operate(num1,num2);
-                break;
-            case '%':
-                result = modOperator.operate(num1,num2);
-                break;
-            default:
-                throw new ArithmeticException("잘못된 연산기호 입니다");
-        }
-        if(flag)
-            System.out.println("결과값은" + result + "입니다");
-        //리스트에 저장함
-        if(flag)
-            //사칙연산 기호중 아무것도 해당되지않는 result는 0이되는데 이경우에만 리스트에 넣지말자
-            //그냥 result가 0일때 리스트에 추가하지않으면 사칙연산후 결과값이 0일때도 리스트에 넣지않기때문에 이런식으로 구현
-            listAdd(result);
-        //return result;
     }
 }
 
