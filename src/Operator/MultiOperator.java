@@ -1,10 +1,10 @@
 package Operator;
 
-public class MultiOperator {
+public class MultiOperator extends Operate{
     public MultiOperator() {
 
     }
-    public int multiOperate(int a, int b) {
+    public int operate(int a, int b) {
         return a * b;
     }
 }

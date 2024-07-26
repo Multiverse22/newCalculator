@@ -1,10 +1,10 @@
 package Operator;
 
-public class SubOperator {
+public class SubOperator extends Operate{
     public SubOperator() {
 
     }
-    public int subOperate(int a, int b) {
+   public int operate(int a,int b){
         return a - b;
-    }
+   }
 }

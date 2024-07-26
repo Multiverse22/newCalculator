@@ -1,10 +1,10 @@
 package Operator;
 
-public class DivideOperator {
+public class DivideOperator extends Operate {
     public DivideOperator() {
 
     }
-    public int divideOperate(int a, int b) {
+    public int operate(int a, int b) {
         if(b==0)
         {
             throw new ArithmeticException("0으로 나눌수는 없습니다");

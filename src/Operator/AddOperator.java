@@ -1,10 +1,10 @@
 package Operator;
 
-public class AddOperator {
+public class AddOperator extends Operate{
     public AddOperator() {
 
     }
-    public int addOperate(int a, int b) {
-        return a + b;
+    public int operate(int a, int b){
+        return a+b;
     }
 }

@@ -1,9 +1,9 @@
+package Calc;
 import java.util.ArrayList;
-import Operator.AddOperator;
-import Operator.MultiOperator;
-import Operator.SubOperator;
-import Operator.DivideOperator;
-public class Calculator {
+
+import Operator.*;
+
+public abstract class Calculator {
     protected int num1=0,num2=0;
     //직접 접근 금지
     protected double radius=0;
@@ -15,12 +15,16 @@ public class Calculator {
     //매개변수에 따라 다양하게 초기화가 가능하기때문
     protected ArrayList<Integer> list;
     //private으로 선언하지않으면 누군가 list를 비워버리는 메서드로 list를 싹날릴수도있기때문에 getter/setter로만 접근 할 수 있게 private으로 선언해야한다.
+    //무한으로 저장할 수 있게 동적 참조형 변수 ArrayList자료형 사용
     protected ArrayList<Double> listCircleArea;
     //연산결과를 저장하는 컬렉션 타입 필드
     protected AddOperator addOperator;
     protected SubOperator subOperator;
     protected DivideOperator divideOperator;
     protected MultiOperator multiOperator;
+    protected ModOperator modOperator;
+    //사칙연산 객체선언
+    public OperatorType Op;
     public Calculator(){
         list=new ArrayList<>();
         listCircleArea=new ArrayList<>();
@@ -28,11 +32,11 @@ public class Calculator {
         subOperator=new SubOperator();
         multiOperator=new MultiOperator();
         divideOperator=new DivideOperator();
+        modOperator=new ModOperator();
+        //초기화가 필요한 객체들 생성과 동시에 초기화
 
     }
-    public void calculateCircleArea(Double radius){
-       listCircleArea.add(PI*radius*radius);
-    }
+
     //원의넓이 필드관련 Getter/Setter
     public void setRadius(double radius){
         this.radius=radius;
@@ -80,17 +84,13 @@ public class Calculator {
     }
     public void inquiryResults(){
         System.out.println("------------현재 목록은 다음과 같습니다:-----------");
-            for (int k : list) {
-                System.out.println(k);
-            }
+        for (int k : list) {
+            System.out.println(k);
+        }
         System.out.println("------------현재 목록은 다음과 같습니다:-----------");
     }
     public void listAdd(int a){
         list.add(a);
-    }
-
-    public void listAdd(double a){
-        listCircleArea.add(a);
     }
     public void calculate(int a,int b,char op)
     {
@@ -104,16 +104,19 @@ public class Calculator {
         boolean flag = true;
         switch (basicOperator) {
             case '/':
-                result = divideOperator.divideOperate(num1,num2);
+                result = divideOperator.operate(num1,num2);
                 break;
             case '*':
-                result = multiOperator.multiOperate(num1,num2);
+                result = multiOperator.operate(num1,num2);
                 break;
             case '+':
-                result = addOperator.addOperate(num1,num2);
+                result = addOperator.operate(num1,num2);
                 break;
             case '-':
-                result = subOperator.subOperate(num1,num2);
+                result = subOperator.operate(num1,num2);
+                break;
+            case '%':
+                result = modOperator.operate(num1,num2);
                 break;
             default:
                 throw new ArithmeticException("잘못된 연산기호 입니다");
