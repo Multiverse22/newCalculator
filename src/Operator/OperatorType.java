@@ -2,11 +2,19 @@ package Operator;
 
 public class OperatorType<T> {
     public enum Op {
-        ADD{
+        ADD {
             @Override
-            public <T extends Number>double apply(T a, T b) {
+            public <T extends Number> double apply(T a, T b) {
                 return a.doubleValue() + b.doubleValue();
             }
+            /*
+            @Override
+            public int apply(int a,int b){
+            return a + b;
+            }
+            기존 제네릭을 활용하기 전 enum코드
+             */
+
 
         },
         SUB{
