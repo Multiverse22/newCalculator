@@ -57,13 +57,17 @@ public class Main
 
                         //이 부분 항상 주의할 것
                         answer = sc.nextLine();
-                        if (answer.equals("remove")) {
+                        if (answer.equals("remove"))
                             //calculator.list.remove(0); 변수를 직접수정하는것이 아닌 메서드로
                             Arithcalc.removeResult();
-                        }
-                        if (answer.equals("inquiry")) {
+
+                        if (answer.equals("inquiry"))
                             Arithcalc.inquiryResults();
                             //이제 조회기능도 메서드로
+
+                        if (answer.equals("ishigh"))
+                        {
+                            Arithcalc.Temp();
                         }
                     }
 
@@ -100,7 +104,7 @@ public class Main
             }
 
         }
-        Arithcalc.inquiryListB();
+        Arithcalc.Temp();
         System.out.println("프로그램 종료");
     }
 }

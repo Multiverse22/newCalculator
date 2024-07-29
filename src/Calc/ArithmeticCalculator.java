@@ -2,6 +2,7 @@ package Calc;
 import Operator.OperatorType;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class ArithmeticCalculator<T extends Number> extends Calculator {
     protected T numA;
@@ -10,6 +11,7 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
     OperatorType<T> operatorType;
     protected ArrayList<Double> listA;
     protected ArrayList<Double> listB;
+
     //새 리스트를 선언했다면 꼭 선언과 동시에 초기화를 하던 생성자에서 초기화를 해줘야한다.
     public ArithmeticCalculator(){
         listA=new ArrayList<Double>();
@@ -59,13 +61,6 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
         }
         System.out.println("------------현재 목록은 다음과 같습니다:-----------");
     }
-    public void inquiryListB(){
-        System.out.println("------------현재 목록은 다음과 같습니다:-----------");
-        for (Double k : listB) {
-            System.out.println(k);
-        }
-        System.out.println("------------현재 목록은 다음과 같습니다:-----------");
-    }
     public void calculate(T a,T b,char op)
     {
         setA(a);
@@ -94,20 +89,34 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
                 throw new ArithmeticException("잘못된 연산기호 입니다");
         }
         System.out.println("결과값은" + result + "입니다");
-        //리스트에 저장함
-        //사칙연산 기호중 아무것도 해당되지않는 result는 0이되는데 이경우에만 리스트에 넣지말자
-        //그냥 result가 0일때 리스트에 추가하지않으면 사칙연산후 결과값이 0일때도 리스트에 넣지않기때문에 이런식으로 구현
         listAdd(result);
-        Temp();
     }
     public void Temp(){
-        T tmpA=getNumA();
-        T tmpB=getNumB();
-        double resultT=getResult();
-        if(resultT>tmpA.doubleValue()&&resultT>tmpB.doubleValue())
+        Stream<Double> stream=listA.stream();
+        T numberA=getNumA();
+        T numberB=getNumB();
+        /*
+        구현하고싶은것 listA의 값들을 돌면서
+        현재!!! numA와 numB값보다 높은 배열의 값들을
+        listB에 넣고싶은것이다!!!!
+        다시생각해보니 굳이 listB에 넣어야하나?
+        그냥 실행한값들을 println만해도 상관없을것같다.
+
+        public void aaa(T a,T b){
+
+        for(double d:listA)
         {
-            listB.add(resultT);
+            if(d>a.doubleValue()&&d>b.doubleValue())
+                System.out.println(d);
         }
-        //입력값들보다 높은수는 listB에 add하는 메서드 구현
+        }
+        원래 구현하고자 했던 식
+        */
+        System.out.println("------------현재 입력받은 값(numberA:"+numberA+",numberB:"+numberB+") 보다 높은값들은:-----------");
+        stream.filter( e-> e>numberA.doubleValue() && e>numberB.doubleValue())
+                .forEach(System.out::println);
+        //아주 쌈@뽕하게 구현이된 모습 e->(요소element로 인식) e>numberA.doubleValue() && e>numberB.doubleValue() 이부분은
+        //listA에 있는 요소중 현재 값 numberA와 numberB보다 큰 요소만을 선택해 반복println문을 실행함
+        System.out.println("------------현재 입력받은 값(numberA:"+numberA+",numberB:"+numberB+") 보다 높은값들은:-----------");
     }
 }
