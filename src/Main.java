@@ -18,6 +18,7 @@ public class Main
 
             if (tmp == 1)
                 while (true) {
+
                     //사칙연산계산기
                     System.out.println("첫 번째 숫자를 입력하세요: ");
                     //String buffer=sc.nextLine();
@@ -99,6 +100,7 @@ public class Main
             }
 
         }
+        Arithcalc.inquiryListB();
         System.out.println("프로그램 종료");
     }
 }

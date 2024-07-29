@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import Operator.*;
 
 public abstract class Calculator {
-    protected int num1=0,num2=0;
-    //직접 접근 금지
     protected double radius=0;
     static final double PI=3.14;
     //static과 final을 둘다사용하면 객체없이도 어디서나 PI를 3.14 대신사용할 수 있으며
@@ -18,31 +16,16 @@ public abstract class Calculator {
     //무한으로 저장할 수 있게 동적 참조형 변수 ArrayList자료형 사용
     protected ArrayList<Double> listCircleArea;
     //연산결과를 저장하는 컬렉션 타입 필드
-    protected AddOperator addOperator;
-    protected SubOperator subOperator;
-    protected DivideOperator divideOperator;
-    protected MultiOperator multiOperator;
-    protected ModOperator modOperator;
     //사칙연산 객체선언
     public Calculator(){
         list=new ArrayList<>();
         listCircleArea=new ArrayList<>();
-        addOperator=new AddOperator();
-        subOperator=new SubOperator();
-        multiOperator=new MultiOperator();
-        divideOperator=new DivideOperator();
-        modOperator=new ModOperator();
+
         //초기화가 필요한 객체들 생성과 동시에 초기화
 
     }
 
     //원의넓이 필드관련 Getter/Setter
-    public void setRadius(double radius){
-        this.radius=radius;
-    }
-    public Double getRadius(){
-        return this.radius;
-    }
     public boolean emptyList(){
         //Calculator클래스의 list가 비어있는지 확인할때마다 객체.list.isEmpty()메서드를 사용하는건 너무번거로워서 클래스내부에 메서드로 작성
         if(list.isEmpty())
@@ -53,23 +36,11 @@ public abstract class Calculator {
             return false;
     }
 
-    public void setA(int a){
-        num1=a;
-    }
-    public void setB(int b){
-        num2=b;
-    }
     public void setOp(char op){
         basicOperator=op;
     }
     //Setter 클래스내부에서만 변경할 수 있게 num1,num2,basicOperator를 전부 private로 변경했지만 Setter 메서드를 사용하면
     //private로 변경하는 의미가 없다. 이부분은 나중에 변경할 예정
-    public int getA(){
-        return num1;
-    }
-    public int getB(){
-        return num2;
-    }
     public char getOp(){
         return basicOperator;
     }
@@ -88,8 +59,6 @@ public abstract class Calculator {
         }
         System.out.println("------------현재 목록은 다음과 같습니다:-----------");
     }
-    public void listAdd(int a){
-        list.add(a);
-    }
+
 }
 
