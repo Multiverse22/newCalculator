@@ -1,5 +1,6 @@
 package Calc;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class CircleCalculator extends Calculator {
     //변수타입에 주의
@@ -10,18 +11,18 @@ public class CircleCalculator extends Calculator {
         //동시에 리스트 초기화
         //선언은 protected 제어자로 이미 선언되어있다.
     }
-    public void calculateCircleArea(Double radius){
-        listCircleArea.add(PI*radius*radius);
-    }
-
     @Override
-    public void inquiryResults(){
-        System.out.println("------------현재 목록은 다음과 같습니다:-----------");
-        //기존 inquiryResults()메서드는 int k였지만 여기선 Double k
-        for (Double k : listCircleArea) {
-            System.out.println(k);
-        }
-        System.out.println("------------현재 목록은 다음과 같습니다:-----------");
+    protected ArrayList<Double> getList(){
+        return listCircleArea;
     }
+    @Override
+    public void Temp(){
+        ArrayList<Double> list=getList();
+        Stream<Double> stream=list.stream();
+        double numberA=getRadius();
 
+        System.out.println("------------현재 입력받은 값(Radius:"+numberA+") 보다 높은값들은:-----------");
+        stream.filter( e-> e>numberA).forEach(System.out::println);
+        System.out.println("------------현재 입력받은 값(Radius:"+numberA+") 보다 높은값들은:-----------");
+    }
 }

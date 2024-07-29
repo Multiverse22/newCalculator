@@ -32,28 +32,14 @@ public class Main
 
 
                     Arithcalc.calculate(num1, num2, op);
-
-                        /*
-
-                        calculator.setA(sc.nextInt());
-                        //Calculator클래스의 num1의 setter
-                        calculator.setB(sc.nextInt());
-                        //Calculator클래스의 num2의 setter
-                        calculator.setOp(sc.next().charAt(0));
-                        //Calculator클래스의 basicOperator의 setter
-                        calculator.calculate();
-                        //Calculator클래스의 사칙연산을 실행하는 메서드
-
-                         */
-
-
-                    //list.add(calculator.Calculate());
                     answer = "";
                     answer = sc.nextLine();
+                    //버퍼비우기
                     flag = Arithcalc.emptyList();
                     if (!flag) {
                         //Calculator클래스의 list가 비어있지않을때만 실행
                         System.out.println("삭제하고싶다면 remove 입력,조회하고싶으면 inquiry입력");
+                        System.out.println("현 입력값보다 높은값만을 보고싶으시면 ishigh입력");
 
                         //이 부분 항상 주의할 것
                         answer = sc.nextLine();
@@ -104,7 +90,6 @@ public class Main
             }
 
         }
-        Arithcalc.Temp();
         System.out.println("프로그램 종료");
     }
 }
