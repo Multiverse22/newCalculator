@@ -16,7 +16,7 @@ public class CircleCalculator extends Calculator {
         return listCircleArea;
     }
     @Override
-    public void Temp(){
+    public void isHigh(){
         ArrayList<Double> list=getList();
         Stream<Double> stream=list.stream();
         double numberA=getRadius();

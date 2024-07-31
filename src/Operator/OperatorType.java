@@ -44,6 +44,8 @@ public class OperatorType<T> {
         Mod{
             @Override
             public <T extends Number>double apply(T a, T b) {
+                if(b.doubleValue() == 0)
+                    throw new ArithmeticException("분모에 0은 안돼!!!!! 사형!!!!!!!!!!!!");
                 return a.doubleValue() % b.doubleValue();
             }
 

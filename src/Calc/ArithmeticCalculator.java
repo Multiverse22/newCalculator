@@ -7,16 +7,14 @@ import java.util.stream.Stream;
 public class ArithmeticCalculator<T extends Number> extends Calculator {
     protected T numA;
     protected T numB;
-    protected double result;
-    protected ArrayList<Double> listA;
 
-    //새 리스트를 선언했다면 꼭 선언과 동시에 초기화를 하던 생성자에서 초기화를 해줘야한다.
+
     public ArithmeticCalculator(){
-        listA=new ArrayList<Double>();
+        listArith=new ArrayList<Double>();
     }
     @Override
     public ArrayList<Double> getList(){
-        return listA;
+        return listArith;
     }
     protected void setA(T a){
         numA=a;
@@ -32,10 +30,8 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
     protected T getNumberB(){
         return numB;
     }
-    //@Override를 적지않아도 된다 매개변수가 바뀐것이라 오버로딩으로 적용되기때문
     public void calculate(T a,T b,char op)
     {
-        ArrayList<Double> list=getList();
         setA(a);
         setB(b);
         setBasicOperator(op);
@@ -61,11 +57,11 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
             default:
                 throw new ArithmeticException("잘못된 연산기호 입니다");
         }
-        System.out.println("결과값은" + result + "입니다");
+        System.out.println(a+ " " +op+ " " +b+ " = " + result + "입니다");
         listAdd(result);
     }
     @Override
-    public void Temp(){
+    public void isHigh(){
         ArrayList<Double> list=getList();
         Stream<Double> stream=list.stream();
         T numberA=getNumberA();
